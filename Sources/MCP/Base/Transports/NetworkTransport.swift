@@ -32,9 +32,6 @@ import struct Foundation.Data
     /// // Use the transport with an MCP client
     /// let client = Client(name: "MyApp", version: "1.0.0")
     /// try await client.connect(transport: transport)
-    ///
-    /// // Initialize the connection
-    /// let result = try await client.initialize()
     /// ```
     public actor NetworkTransport: Transport {
         private let connection: NWConnection
