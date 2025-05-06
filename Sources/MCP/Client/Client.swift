@@ -168,7 +168,7 @@ public actor Client {
     }
 
     /// Connect to the server using the given transport
-    public func connect(transport: any Transport) async throws {
+    public func connect(transport: any Transport) async throws -> Initialize.Result {
         self.connection = transport
         try await self.connection?.connect()
 
@@ -218,6 +218,10 @@ public actor Client {
                 }
             } while true
         }
+
+        // Automatically initialize after connecting
+        let result = try await initialize()
+        return result
     }
 
     /// Disconnect the client and cancel all pending requests
