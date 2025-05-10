@@ -30,7 +30,7 @@ public protocol Method {
 }
 
 /// Type-erased method for request/response handling
-struct AnyMethod: Method, Sendable {
+public struct AnyMethod: Method, Sendable {
     static var name: String { "" }
     typealias Parameters = Value
     typealias Result = Value
