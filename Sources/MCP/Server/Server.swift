@@ -125,7 +125,7 @@ public actor Server {
     public var configuration: Configuration
 
     /// Request handlers
-    private var methodHandlers: [String: RequestHandlerBox] = [:]
+    public var methodHandlers: [String: RequestHandlerBox] = [:]
     /// Notification handlers
     private var notificationHandlers: [String: [NotificationHandlerBox]] = [:]
 
