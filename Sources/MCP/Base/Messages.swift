@@ -157,7 +157,7 @@ class RequestHandlerBox: @unchecked Sendable {
 }
 
 /// A typed request handler that can be used to handle requests of a specific type
-final class TypedRequestHandler<M: Method>: RequestHandlerBox, @unchecked Sendable {
+public final class TypedRequestHandler<M: Method>: RequestHandlerBox, @unchecked Sendable {
     private let _handle: @Sendable (Request<M>) async throws -> Response<M>
 
     init(_ handler: @escaping @Sendable (Request<M>) async throws -> Response<M>) {
