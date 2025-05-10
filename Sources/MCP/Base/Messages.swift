@@ -150,7 +150,7 @@ extension AnyRequest {
 }
 
 /// A box for request handlers that can be type-erased
-class RequestHandlerBox: @unchecked Sendable {
+public class RequestHandlerBox: @unchecked Sendable {
     func callAsFunction(_ request: AnyRequest) async throws -> AnyResponse {
         fatalError("Must override")
     }
