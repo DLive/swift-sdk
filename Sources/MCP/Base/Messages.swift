@@ -137,7 +137,7 @@ extension Request {
 }
 
 /// A type-erased request for request/response handling
-typealias AnyRequest = Request<AnyMethod>
+public typealias AnyRequest = Request<AnyMethod>
 
 extension AnyRequest {
     init<T: Method>(_ request: Request<T>) throws {
@@ -245,7 +245,7 @@ public struct Response<M: Method>: Hashable, Identifiable, Codable, Sendable {
 }
 
 /// A type-erased response for request/response handling
-typealias AnyResponse = Response<AnyMethod>
+public typealias AnyResponse = Response<AnyMethod>
 
 extension AnyResponse {
     init<T: Method>(_ response: Response<T>) throws {
@@ -356,7 +356,7 @@ public struct Message<N: Notification>: Hashable, Codable, Sendable {
 }
 
 /// A type-erased message for message handling
-typealias AnyMessage = Message<AnyNotification>
+public typealias AnyMessage = Message<AnyNotification>
 
 extension Notification where Parameters == Empty {
     /// Create a message with empty parameters.
@@ -373,12 +373,12 @@ extension Notification {
 }
 
 /// A box for notification handlers that can be type-erased
-class NotificationHandlerBox: @unchecked Sendable {
-    func callAsFunction(_ notification: Message<AnyNotification>) async throws {}
+public class NotificationHandlerBox: @unchecked Sendable {
+    public func callAsFunction(_ notification: Message<AnyNotification>) async throws {}
 }
 
 /// A typed notification handler that can be used to handle notifications of a specific type
-final class TypedNotificationHandler<N: Notification>: NotificationHandlerBox,
+public final class TypedNotificationHandler<N: Notification>: NotificationHandlerBox,
     @unchecked Sendable
 {
     private let _handle: @Sendable (Message<N>) async throws -> Void
@@ -388,7 +388,7 @@ final class TypedNotificationHandler<N: Notification>: NotificationHandlerBox,
         super.init()
     }
 
-    override func callAsFunction(_ notification: Message<AnyNotification>) async throws {
+    public override func callAsFunction(_ notification: Message<AnyNotification>) async throws {
         // Create a concrete notification from the type-erased one
         let data = try JSONEncoder().encode(notification)
         let typedNotification = try JSONDecoder().decode(Message<N>.self, from: data)
