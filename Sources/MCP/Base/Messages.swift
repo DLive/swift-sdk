@@ -151,7 +151,7 @@ extension AnyRequest {
 
 /// A box for request handlers that can be type-erased
 public class RequestHandlerBox: @unchecked Sendable {
-    func callAsFunction(_ request: AnyRequest) async throws -> AnyResponse {
+    public func callAsFunction(_ request: AnyRequest) async throws -> AnyResponse {
         fatalError("Must override")
     }
 }
@@ -165,7 +165,7 @@ public final class TypedRequestHandler<M: Method>: RequestHandlerBox, @unchecked
         super.init()
     }
 
-    override func callAsFunction(_ request: AnyRequest) async throws -> AnyResponse {
+    public override func callAsFunction(_ request: AnyRequest) async throws -> AnyResponse {
         let encoder = JSONEncoder()
         let decoder = JSONDecoder()
 
