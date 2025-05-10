@@ -31,9 +31,9 @@ public protocol Method {
 
 /// Type-erased method for request/response handling
 public struct AnyMethod: Method, Sendable {
-    static var name: String { "" }
-    typealias Parameters = Value
-    typealias Result = Value
+    public static var name: String { "" }
+    public typealias Parameters = Value
+    public typealias Result = Value
 }
 
 extension Method where Parameters == Empty {
