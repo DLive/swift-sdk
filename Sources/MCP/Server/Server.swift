@@ -468,7 +468,7 @@ public actor Server {
         }
     }
 
-    private func registerDefaultHandlers(
+    public func registerDefaultHandlers(
         initializeHook: (@Sendable (Client.Info, Client.Capabilities) async throws -> Void)?
     ) {
         // Initialize
